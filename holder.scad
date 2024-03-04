@@ -14,7 +14,7 @@ module mic() {
     }
 }
 
-
+// part
 module holder() {
     $fn = 100;
     
@@ -37,39 +37,21 @@ module holder() {
     }
 }
 
-module arm () {
-    $fn = 100;
-    
-    translate([0, -3, 0])
-    difference() {
-        union() {
-            rotate([-90, 0, 0]) cylinder(6, 5, 5);
-            translate([0, 0, -100]) rotate([-90, 0, 0]) cylinder(6, 5, 5);
-            translate([-5, 0, -100]) cube([10, 6, 100]);
-        }
-        
-        translate([0, -1, 0]) rotate([-90, 0, 0]) cylinder(8, 2, 2);
-        translate([0, -1, -100]) rotate([-90, 0, 0]) cylinder(8, 2, 2);
-        translate([-6, 1.9, -6]) cube([12, 2.2, 12]);
-        translate([-6, 1.9, -106]) cube([12, 2.2, 12]);
-    }    
-}
 
-
-module fork() {
-    difference() {
-        union() {
-            rotate([-90, 0, 0]) cylinder(12, 10, 10);
-            translate([-10, 0, -15]) cube([20, 12, 15]);
-        }
-        
-        translate([0, -1, 0]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
-        translate([-11, 3.9, -12]) cube([22, 4.2, 23]);
-    }
-}
-
-
+// part
 module stand() {
+    module fork() {
+        difference() {
+            union() {
+                rotate([-90, 0, 0]) cylinder(12, 10, 10);
+                translate([-10, 0, -15]) cube([20, 12, 15]);
+            }
+            
+            translate([0, -1, 0]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
+            translate([-11, 3.9, -12]) cube([22, 4.2, 23]);
+        }
+    }
+
     module leg() {
         cube([100, 12, 3]);
         translate([0, 4, 0]) cube([100, 4, 8]);
@@ -87,6 +69,24 @@ module stand() {
 }
 
 
+// part
+module extension() {
+    $fn=100;
+    difference() {
+        union() {
+            translate([0, -2, 0]) cube([110, 4, 10]);
+            translate([110, 2, 10]) rotate([90, 0, 0]) cylinder(4, 10, 10);
+            translate([0, 2, 0]) rotate([90, 0, 0]) cylinder(4, 10, 10);
+
+        }
+
+        translate([110, -7, 10]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
+        translate([0, -5, 0]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
+    }
+}
+
+
+// part
 module screw() {
     $fn = 60;
     
@@ -106,23 +106,8 @@ module screw() {
     }
 }
 
-module extension() {
-    $fn=100;
-    difference() {
-        union() {
-            translate([0, -2, 0]) cube([110, 4, 10]);
-            translate([110, 2, 10]) rotate([90, 0, 0]) cylinder(4, 10, 10);
-            translate([0, 2, 0]) rotate([90, 0, 0]) cylinder(4, 10, 10);
 
-        }
-
-        translate([110, -7, 10]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
-        translate([0, -5, 0]) rotate([-90, 0, 0]) cylinder(14, 4, 4);
-    }
-    
-}
-
-
+// part
 module nut() {
     $fn = 60;
     
@@ -140,17 +125,6 @@ module nut() {
 }
 
 
-module leg() {
-    $fn = 100;
-    
-    translate([0, -5, 0]) cube([100, 5, 5]);
-    translate([0, 0, 0]) cube([100, 5, 5]);
-    difference() {
-        cylinder(2, 5, 5);
-        translate([0, 0, 1]) cylinder(2, 4, 4);
-    }
-}
-
 a1 = 0;
 a2 = 0;
 a3 = 0;
@@ -158,7 +132,7 @@ a3 = 0;
 a1_0 = atan2(10, 110);
 l = sqrt(100 + 110 ^ 2);
 
-// elements
+
 stand();
 translate([0, 0, 30]) rotate([0, -a1, 0]) extension();
 translate([l * cos(a1 + a1_0), 4, 30 + l * sin(a1 + a1_0)])
