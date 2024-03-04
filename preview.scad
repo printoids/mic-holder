@@ -39,7 +39,7 @@ rotate([0, -a2, 180])
         translate([110, 4, 10])
         rotate([0, a3, 0]) {
             holder();
-            %translate([0, 0, 14]) mic();
+            %translate([0, 0, 14]) rotate([0, 0, 180]) mic();
         }
     }
 

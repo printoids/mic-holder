@@ -2,6 +2,7 @@ include <BOSL/constants.scad>
 use <BOSL/threading.scad>
 use <BOSL/involute_gears.scad>
 
+
 module mic() {
     difference() {
         union() {
@@ -11,6 +12,25 @@ module mic() {
             translate([0, 0, 4]) cylinder(8, 15, 15);
         }
         cube([22, 10, 1.6], true);
+    }
+    
+    translate([0, 0, 12]) cylinder(5, 10, 10);
+    translate([-20, -11, 16]) cube([54, 22, 8]);
+    
+    translate([-23, 0, 64]) rotate([0, 90, 0]) cylinder(61, 10.8, 10.8);
+    
+    hull() {
+        translate([-39, 0, 64]) scale([0.7, 1, 1]) sphere(27);
+        translate([-95, 0, 64]) sphere(20);
+    }
+    
+    intersection() {
+        union() {
+            translate([27, 0, 60]) rotate([0, 90, 0]) cylinder(3, 40, 40);
+            translate([-16, 0, 60]) rotate([0, 90, 0]) cylinder(3, 40, 40);
+        }
+        
+        translate([-30, 0, -20]) rotate([0, 90, 0]) cylinder(100, 100, 100);
     }
 }
 
@@ -125,9 +145,9 @@ module nut() {
 }
 
 
-a1 = 0;
-a2 = 0;
-a3 = 0;
+a1 = 30;
+a2 = 20;
+a3 = -20;
 
 a1_0 = atan2(10, 110);
 l = sqrt(100 + 110 ^ 2);
@@ -150,7 +170,7 @@ rotate([0, -a2, 180])
         translate([110, 4, 10])
         rotate([0, a3, 0]) {
             holder();
-            %translate([0, 0, 14]) mic();
+            %translate([0, 0, 14]) rotate([0, 0, 180]) mic();
         }
     }
 
